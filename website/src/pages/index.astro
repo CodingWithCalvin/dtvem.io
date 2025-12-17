@@ -1,0 +1,162 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CopyableCommand from '@components/CopyableCommand.astro';
+
+const features = [
+  {
+    title: 'Windows First-Class',
+    description: 'Built from the ground up to work seamlessly on Windows. No more second-class citizen treatment.',
+    icon: 'windows',
+  },
+  {
+    title: 'Shim-Based Architecture',
+    description: 'No shell integration required. Works via shims, so no messing with .bashrc or .zshrc.',
+    icon: 'terminal',
+  },
+  {
+    title: 'Project-Local Versions',
+    description: 'Automatic version switching per directory. Just cd into your project and the right version is used.',
+    icon: 'folder',
+  },
+  {
+    title: 'Multiple Runtimes',
+    description: 'Python, Node.js, and more — all managed by one tool. No need for separate version managers.',
+    icon: 'layers',
+  },
+];
+
+const runtimes = [
+  { name: 'Python', status: 'available' },
+  { name: 'Node.js', status: 'available' },
+  { name: 'Ruby', status: 'available' },
+  { name: 'Go', status: 'coming' },
+  { name: 'Rust', status: 'coming' },
+  { name: 'Java', status: 'coming' },
+];
+---
+
+<BaseLayout title="dtvem - Cross-Platform Runtime Version Manager">
+  <!-- Hero Section -->
+  <section class="py-20 md:py-32" style="background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(45, 212, 191, 0.4), transparent 70%);">
+    <div class="container text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+        Manage Python, Node.js, and more.
+        <span class="block text-primary-400">No shell hacks. No surprises.</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
+        The cross-platform runtime version manager that actually works on Windows.
+        One tool to manage all your runtimes.
+      </p>
+
+      <!-- Install Commands -->
+      <div class="mx-auto mt-10 flex max-w-3xl items-stretch justify-center gap-6">
+        <div class="hidden shrink-0 sm:flex">
+          <img src="/images/logo.jpg" alt="dtvem logo" class="w-auto rounded-lg object-cover" loading="lazy" />
+        </div>
+        <div class="flex flex-1 flex-col justify-between gap-4">
+          <CopyableCommand command="irm dtvem.io/install.ps1 | iex" label="Windows (PowerShell)" />
+          <CopyableCommand command="curl -fsSL dtvem.io/install.sh | bash" label="macOS / Linux" />
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/docs/user-guide/getting-started" class="btn-primary">
+          Get Started
+        </a>
+        <a href="/docs" class="btn-secondary">
+          View Docs
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="border-t border-primary-600 py-20">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-white">Why dtvem?</h2>
+        <p class="mt-4 text-lg text-slate-400">
+          A modern approach to runtime version management
+        </p>
+      </div>
+
+      <div class="mt-16 grid gap-8 md:grid-cols-2">
+        {features.map((feature) => (
+          <div class="rounded-xl border border-slate-800 bg-navy-900 p-6">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary-900/30">
+              {feature.icon === 'windows' && (
+                <svg class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              )}
+              {feature.icon === 'terminal' && (
+                <svg class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              )}
+              {feature.icon === 'folder' && (
+                <svg class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+              )}
+              {feature.icon === 'layers' && (
+                <svg class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-xl font-semibold text-white">{feature.title}</h3>
+            <p class="mt-2 text-slate-400">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported Runtimes Section -->
+  <section class="border-t border-primary-600 py-20">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-white">Supported Runtimes</h2>
+        <p class="mt-4 text-lg text-slate-400">
+          One tool for all your runtime versions
+        </p>
+      </div>
+
+      <div class="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3">
+        {runtimes.map((runtime) => (
+          <div class="flex items-center justify-between rounded-lg border border-slate-800 bg-navy-900 px-4 py-3">
+            <span class="font-medium text-white">{runtime.name}</span>
+            {runtime.status === 'available' ? (
+              <span class="rounded-full bg-primary-900/30 px-2 py-0.5 text-xs font-medium text-primary-400">
+                Available
+              </span>
+            ) : (
+              <span class="rounded-full bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-400">
+                Coming Soon
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="border-t border-primary-600 py-20" style="background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(45, 212, 191, 0.4), transparent 70%);">
+    <div class="container text-center">
+      <h2 class="text-3xl font-bold text-white">Ready to simplify your workflow?</h2>
+      <p class="mt-4 text-lg text-slate-400">
+        Get started with dtvem in minutes.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/docs/user-guide/getting-started" class="btn-primary">
+          Get Started
+        </a>
+        <a href="https://github.com/dtvem/dtvem" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

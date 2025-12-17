@@ -1,0 +1,186 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+// Get all docs
+const allDocs = await getCollection('docs', ({ data }) => !data.draft);
+
+// Get all user-guide docs and sort by order
+const docs = allDocs
+  .filter((doc) => doc.slug.startsWith('user-guide'))
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+// Separate top-level docs from nested docs
+const topLevelDocs = docs.filter((doc) => !doc.data.parent);
+const nestedDocs = docs.filter((doc) => doc.data.parent);
+
+// Group nested docs by parent
+const groups: Record<string, typeof docs> = {};
+nestedDocs.forEach((doc) => {
+  const parent = doc.data.parent as string;
+  if (!groups[parent]) groups[parent] = [];
+  groups[parent].push(doc);
+});
+
+const currentPath = Astro.url.pathname;
+
+// Find current doc for breadcrumbs
+const currentDoc = allDocs.find((doc) => {
+  const href = `/docs/${doc.slug}`;
+  return currentPath === href || currentPath === `${href}/`;
+});
+const parentName = currentDoc?.data.parent as string | undefined;
+---
+
+<BaseLayout title={`${title} - dtvem Docs`} description={description}>
+  <!-- Doc Header -->
+  <section class="border-b border-slate-800 py-8" style="background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(45, 212, 191, 0.25), transparent 70%);">
+    <div class="container">
+      <div class="flex items-center gap-2 text-sm text-slate-400">
+        <a href="/docs" class="hover:text-primary-400">Docs</a>
+        <span>/</span>
+        {parentName ? (
+          <>
+            <span class="text-slate-400">{parentName}</span>
+            <span>/</span>
+            <span class="text-white">{title}</span>
+          </>
+        ) : (
+          <span class="text-white">{title}</span>
+        )}
+      </div>
+      <p class="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">{title}</p>
+    </div>
+  </section>
+
+  <div class="container py-8">
+    <div class="flex gap-8">
+      <!-- Sidebar -->
+      <aside class="hidden w-64 shrink-0 lg:block">
+        <nav class="sticky top-24">
+          <ul class="space-y-1">
+            {/* Top-level docs */}
+            {topLevelDocs.map((doc) => {
+              const href = `/docs/${doc.slug}`;
+              const isActive = currentPath === href || currentPath === `${href}/`;
+              return (
+                <li>
+                  <a
+                    href={href}
+                    class:list={[
+                      'block rounded-lg px-3 py-2 text-sm transition-colors',
+                      isActive
+                        ? 'bg-primary-900/20 font-medium text-primary-400'
+                        : 'text-slate-400 hover:bg-slate-800 hover:text-white',
+                    ]}
+                  >
+                    {doc.data.title}
+                  </a>
+                </li>
+              );
+            })}
+            {/* Nested groups - always expanded */}
+            {Object.entries(groups).map(([groupName, groupDocs]) => {
+              // Find the overview page for this group (order: 0)
+              const overviewDoc = groupDocs.find((doc) => doc.data.order === 0);
+              const overviewHref = overviewDoc ? `/docs/${overviewDoc.slug}` : `/docs/${groupDocs[0]?.slug}`;
+              const isOverviewActive = currentPath === overviewHref || currentPath === `${overviewHref}/`;
+              return (
+                <li>
+                  <a
+                    href={overviewHref}
+                    class:list={[
+                      'block rounded-lg px-3 py-2 text-sm transition-colors',
+                      isOverviewActive
+                        ? 'bg-primary-900/20 font-medium text-primary-400'
+                        : 'text-slate-400 hover:bg-slate-800 hover:text-white',
+                    ]}
+                  >
+                    {groupName}
+                  </a>
+                  <ul class="mt-1 space-y-1 border-l border-slate-800 ml-3 pl-3">
+                    {groupDocs.filter((doc) => doc.data.order !== 0).map((doc) => {
+                      const href = `/docs/${doc.slug}`;
+                      const isActive = currentPath === href || currentPath === `${href}/`;
+                      return (
+                        <li>
+                          <a
+                            href={href}
+                            class:list={[
+                              'block rounded-lg px-3 py-1.5 text-sm transition-colors',
+                              isActive
+                                ? 'bg-primary-900/20 font-medium text-primary-400'
+                                : 'text-slate-400 hover:bg-slate-800 hover:text-white',
+                            ]}
+                          >
+                            {doc.data.title}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article class="min-w-0 flex-1">
+        <div class="prose prose-invert max-w-none prose-headings:scroll-mt-20 prose-a:text-primary-400">
+          <slot />
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Mermaid support -->
+  <script is:inline type="module">
+    const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+
+    mermaid.default.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2dd4bf',
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#2dd4bf',
+        lineColor: '#64748b',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#0f172a',
+      },
+    });
+
+    // Find all code blocks and check if they contain mermaid syntax
+    const codeBlocks = document.querySelectorAll('pre code');
+    for (const element of codeBlocks) {
+      const code = element.textContent || '';
+      // Check if this looks like mermaid syntax
+      if (!code.trim().match(/^(flowchart|graph|sequenceDiagram|classDiagram|stateDiagram|erDiagram|gantt|pie|gitGraph)/)) {
+        continue;
+      }
+
+      const pre = element.parentElement;
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.style.display = 'flex';
+      div.style.justifyContent = 'center';
+
+      try {
+        const { svg } = await mermaid.default.render('mermaid-' + Math.random().toString(36).slice(2), code);
+        div.innerHTML = svg;
+        pre?.replaceWith(div);
+      } catch (e) {
+        console.error('Mermaid render error:', e);
+      }
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,386 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const comparisons = [
+  {
+    name: 'nvm',
+    fullName: 'Node Version Manager',
+    runtime: 'Node.js',
+    platforms: ['macOS', 'Linux'],
+    windowsSupport: 'No (nvm-windows is a separate project)',
+    shellRequired: true,
+    multiRuntime: false,
+  },
+  {
+    name: 'fnm',
+    fullName: 'Fast Node Manager',
+    runtime: 'Node.js',
+    platforms: ['Windows', 'macOS', 'Linux'],
+    windowsSupport: 'Yes',
+    shellRequired: true,
+    multiRuntime: false,
+  },
+  {
+    name: 'pyenv',
+    fullName: 'Python Version Manager',
+    runtime: 'Python',
+    platforms: ['macOS', 'Linux'],
+    windowsSupport: 'No (pyenv-win is a separate project)',
+    shellRequired: true,
+    multiRuntime: false,
+  },
+  {
+    name: 'rbenv',
+    fullName: 'Ruby Version Manager',
+    runtime: 'Ruby',
+    platforms: ['macOS', 'Linux'],
+    windowsSupport: 'No',
+    shellRequired: true,
+    multiRuntime: false,
+  },
+  {
+    name: 'asdf',
+    fullName: 'asdf Version Manager',
+    runtime: 'Multiple (via plugins)',
+    platforms: ['macOS', 'Linux'],
+    windowsSupport: 'No',
+    shellRequired: true,
+    multiRuntime: true,
+  },
+  {
+    name: 'mise',
+    fullName: 'mise-en-place',
+    runtime: 'Multiple',
+    platforms: ['Windows', 'macOS', 'Linux'],
+    windowsSupport: 'Partial',
+    shellRequired: true,
+    multiRuntime: true,
+  },
+];
+
+const features = [
+  { feature: 'Windows support', dtvem: true, description: 'First-class, not an afterthought' },
+  { feature: 'No shell hooks required', dtvem: true, description: 'Works via shims, no .bashrc changes' },
+  { feature: 'Multiple runtimes', dtvem: true, description: 'Python, Node.js, Ruby in one tool' },
+  { feature: 'Instant version switching', dtvem: true, description: 'No shell restart needed' },
+  { feature: 'Project-local versions', dtvem: true, description: 'Automatic per-directory switching' },
+  { feature: 'Prebuilt binaries', dtvem: true, description: 'Fast installs, no compilation' },
+  { feature: 'Cross-platform config', dtvem: true, description: 'Same .dtvem/runtimes.json everywhere' },
+];
+---
+
+<BaseLayout
+  title="Compare dtvem to nvm, pyenv, rbenv, and asdf"
+  description="See how dtvem compares to nvm, pyenv, rbenv, fnm, asdf, and other version managers. dtvem offers true Windows support, no shell configuration, and multi-runtime management."
+  keywords="nvm alternative, pyenv alternative, rbenv alternative, asdf alternative, fnm alternative, version manager comparison, Windows version manager, best version manager"
+>
+  <!-- Hero -->
+  <section class="border-b border-slate-800 py-16" style="background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(45, 212, 191, 0.3), transparent 70%);">
+    <div class="container text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        Why choose <span class="text-primary-400">dtvem</span>?
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
+        See how dtvem compares to other popular version managers like nvm, pyenv, rbenv, and asdf.
+      </p>
+    </div>
+  </section>
+
+  <!-- Key Differences -->
+  <section class="py-16">
+    <div class="container">
+      <h2 class="text-2xl font-bold text-white">What makes dtvem different</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {features.map((item) => (
+          <div class="rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+            <div class="flex items-center gap-3">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-400/20 text-primary-400">✓</span>
+              <h3 class="font-semibold text-white">{item.feature}</h3>
+            </div>
+            <p class="mt-3 text-sm text-slate-400">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="border-t border-slate-800 py-16">
+    <div class="container">
+      <h2 class="text-2xl font-bold text-white">Feature comparison</h2>
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="border-b border-slate-800">
+              <th class="pb-4 pr-4 font-semibold text-white">Tool</th>
+              <th class="pb-4 pr-4 font-semibold text-white">Runtimes</th>
+              <th class="pb-4 pr-4 font-semibold text-white">Windows (native)</th>
+              <th class="pb-4 pr-4 font-semibold text-white">macOS</th>
+              <th class="pb-4 pr-4 font-semibold text-white">Linux</th>
+              <th class="pb-4 pr-4 font-semibold text-white">Shell hooks</th>
+              <th class="pb-4 font-semibold text-white">Multi-runtime</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-400">
+            <tr class="border-b border-slate-800 bg-primary-400/5">
+              <td class="py-4 pr-4 font-medium text-primary-400">dtvem</td>
+              <td class="py-4 pr-4">Python, Node.js, Ruby</td>
+              <td class="py-4 pr-4"><span class="text-green-400">✓</span></td>
+              <td class="py-4 pr-4"><span class="text-green-400">✓</span></td>
+              <td class="py-4 pr-4"><span class="text-green-400">✓</span></td>
+              <td class="py-4 pr-4"><span class="text-green-400">Not required</span></td>
+              <td class="py-4"><span class="text-green-400">✓</span></td>
+            </tr>
+            {comparisons.map((tool) => (
+              <tr class="border-b border-slate-800">
+                <td class="py-4 pr-4 font-medium text-white">{tool.name}</td>
+                <td class="py-4 pr-4">{tool.runtime}</td>
+                <td class="py-4 pr-4">
+                  {tool.windowsSupport === 'Yes' ? (
+                    <span class="text-green-400">✓</span>
+                  ) : tool.windowsSupport === 'Partial' ? (
+                    <span class="text-yellow-400">Partial</span>
+                  ) : (
+                    <span class="text-red-400">✗</span>
+                  )}
+                </td>
+                <td class="py-4 pr-4">
+                  {tool.platforms.includes('macOS') ? (
+                    <span class="text-green-400">✓</span>
+                  ) : (
+                    <span class="text-red-400">✗</span>
+                  )}
+                </td>
+                <td class="py-4 pr-4">
+                  {tool.platforms.includes('Linux') ? (
+                    <span class="text-green-400">✓</span>
+                  ) : (
+                    <span class="text-red-400">✗</span>
+                  )}
+                </td>
+                <td class="py-4 pr-4">
+                  {tool.shellRequired ? (
+                    <span class="text-yellow-400">Required</span>
+                  ) : (
+                    <span class="text-green-400">Not required</span>
+                  )}
+                </td>
+                <td class="py-4">
+                  {tool.multiRuntime ? (
+                    <span class="text-green-400">✓</span>
+                  ) : (
+                    <span class="text-slate-500">—</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Individual Comparisons -->
+  <section class="border-t border-slate-800 py-16">
+    <div class="container">
+      <h2 class="text-2xl font-bold text-white">Detailed comparisons</h2>
+
+      <div class="mt-12 space-y-16">
+        <!-- vs nvm -->
+        <div id="vs-nvm">
+          <h3 class="flex items-center gap-3 text-xl font-bold text-white">
+            <img src="/images/tool-logos/nvm.svg" alt="nvm logo" class="h-8 w-8" loading="lazy" />
+            dtvem vs nvm
+          </h3>
+          <p class="mt-4 text-slate-400">
+            nvm (Node Version Manager) is the most popular Node.js version manager, but it has significant limitations:
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">No Windows support.</strong> nvm only works on macOS and Linux. nvm-windows is a completely separate project with different behavior.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Requires shell hooks.</strong> You must modify your .bashrc or .zshrc and source nvm on every shell startup.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Single runtime only.</strong> nvm only manages Node.js. You need separate tools for Python, Ruby, etc.</span>
+            </li>
+          </ul>
+          <p class="mt-4 text-slate-400">
+            dtvem provides a consistent experience across all platforms, requires no shell configuration, and manages multiple runtimes with one tool.
+          </p>
+        </div>
+
+        <!-- vs pyenv -->
+        <div id="vs-pyenv">
+          <h3 class="flex items-center gap-3 text-xl font-bold text-white">
+            <img src="/images/tool-logos/pyenv.svg" alt="pyenv logo" class="h-8 w-8" loading="lazy" />
+            dtvem vs pyenv
+          </h3>
+          <p class="mt-4 text-slate-400">
+            pyenv is the go-to Python version manager for Unix systems, but Windows users are left behind:
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">No native Windows support.</strong> pyenv-win exists but is a separate project with independent development and different implementation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Compiles from source.</strong> Installing Python versions requires compilation, which can be slow depending on your hardware.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Requires build dependencies.</strong> You need gcc, make, and various development libraries installed.</span>
+            </li>
+          </ul>
+          <p class="mt-4 text-slate-400">
+            dtvem uses prebuilt binaries for fast installation with no compilation or build tools required.
+          </p>
+        </div>
+
+        <!-- vs asdf -->
+        <div id="vs-asdf">
+          <h3 class="flex items-center gap-3 text-xl font-bold text-white">
+            <img src="/images/tool-logos/asdf.svg" alt="asdf logo" class="h-8 w-8" loading="lazy" />
+            dtvem vs asdf
+          </h3>
+          <p class="mt-4 text-slate-400">
+            asdf is a multi-runtime version manager with a plugin system, but has limitations:
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">No Windows support.</strong> asdf explicitly does not support Windows.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Requires shell hooks.</strong> Must add asdf to your shell configuration.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-400">~</span>
+              <span><strong class="text-white">Plugin complexity.</strong> Each runtime requires finding and installing the right plugin.</span>
+            </li>
+          </ul>
+          <p class="mt-4 text-slate-400">
+            dtvem has built-in support for common runtimes without plugins, and works identically on Windows, macOS, and Linux.
+          </p>
+        </div>
+
+        <!-- vs fnm -->
+        <div id="vs-fnm">
+          <h3 class="flex items-center gap-3 text-xl font-bold text-white">
+            <img src="/images/tool-logos/fnm.svg" alt="fnm logo" class="h-8 w-8" loading="lazy" />
+            dtvem vs fnm
+          </h3>
+          <p class="mt-4 text-slate-400">
+            fnm (Fast Node Manager) is a modern nvm alternative with better Windows support:
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <span class="text-green-400">✓</span>
+              <span><strong class="text-white">Windows support.</strong> fnm works on Windows, macOS, and Linux.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Still requires shell hooks.</strong> You need to add fnm to your shell configuration for automatic switching.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Node.js only.</strong> fnm only manages Node.js versions.</span>
+            </li>
+          </ul>
+          <p class="mt-4 text-slate-400">
+            dtvem manages multiple runtimes and uses shims instead of shell hooks, so it works in any shell without configuration.
+          </p>
+        </div>
+
+        <!-- vs rbenv -->
+        <div id="vs-rbenv">
+          <h3 class="flex items-center gap-3 text-xl font-bold text-white">
+            <img src="/images/tool-logos/rbenv.svg" alt="rbenv logo" class="h-8 w-8" loading="lazy" />
+            dtvem vs rbenv
+          </h3>
+          <p class="mt-4 text-slate-400">
+            rbenv is a popular Ruby version manager for Unix-like systems:
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">No Windows support.</strong> rbenv only works on Unix-like systems (macOS, Linux). No native Windows or WSL guidance is provided.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Requires shell hooks.</strong> You must add rbenv to your shell configuration and run shell integration commands on startup.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Ruby only.</strong> rbenv exclusively manages Ruby versions. You need separate tools for Node.js, Python, etc.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Build dependencies required.</strong> Installing Ruby versions requires compilation tools and development libraries.</span>
+            </li>
+          </ul>
+          <p class="mt-4 text-slate-400">
+            dtvem provides Ruby, Python, and Node.js management in one tool with prebuilt binaries and full Windows support.
+          </p>
+        </div>
+
+        <!-- vs mise -->
+        <div id="vs-mise">
+          <h3 class="flex items-center gap-3 text-xl font-bold text-white">
+            <img src="/images/tool-logos/mise.svg" alt="mise logo" class="h-8 w-8" loading="lazy" />
+            dtvem vs mise
+          </h3>
+          <p class="mt-4 text-slate-400">
+            mise (formerly rtx) is a polyglot version manager with additional features:
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-400">
+            <li class="flex items-start gap-2">
+              <span class="text-green-400">✓</span>
+              <span><strong class="text-white">Multi-runtime support.</strong> mise manages many languages including Node.js, Python, Ruby, Go, and more.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-400">~</span>
+              <span><strong class="text-white">Partial Windows support.</strong> Native Windows works via shims only. Environment variables from config files require workarounds. Best experience is in WSL.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400">✗</span>
+              <span><strong class="text-white">Requires shell configuration.</strong> Shell hooks are recommended for automatic tool switching. Without them, you must use explicit commands like <code class="text-slate-300">mise exec</code>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-400">~</span>
+              <span><strong class="text-white">Feature complexity.</strong> mise is also a task runner and environment manager, which adds power but increases complexity.</span>
+            </li>
+          </ul>
+          <p class="mt-4 text-slate-400">
+            dtvem focuses on version management with first-class native Windows support and zero shell configuration required.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-primary-600 py-16" style="background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(45, 212, 191, 0.3), transparent 70%);">
+    <div class="container text-center">
+      <h2 class="text-3xl font-bold text-white">Ready to try dtvem?</h2>
+      <p class="mt-4 text-lg text-slate-400">
+        Install in seconds and see the difference for yourself.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/docs/user-guide/getting-started" class="btn-primary">
+          Get Started
+        </a>
+        <a href="/docs/user-guide/migration" class="btn-secondary">
+          Migration Guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

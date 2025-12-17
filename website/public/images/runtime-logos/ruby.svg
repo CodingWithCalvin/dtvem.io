@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198 198">
+  <defs>
+    <linearGradient id="a" x1="84.75%" y1="111.4%" x2="58.25%" y2="64.58%">
+      <stop offset="0%" stop-color="#FB7655"/>
+      <stop offset="41%" stop-color="#E42B1E"/>
+      <stop offset="99%" stop-color="#900"/>
+    </linearGradient>
+    <linearGradient id="b" x1="116.65%" y1="60.89%" x2="1.75%" y2="19.29%">
+      <stop offset="0%" stop-color="#871101"/>
+      <stop offset="99%" stop-color="#911209"/>
+    </linearGradient>
+    <linearGradient id="c" x1="75.77%" y1="219.33%" x2="38.98%" y2="7.83%">
+      <stop offset="0%" stop-color="#871101"/>
+      <stop offset="99%" stop-color="#911209"/>
+    </linearGradient>
+    <linearGradient id="d" x1="50.01%" y1="7.23%" x2="66.48%" y2="79.14%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="23%" stop-color="#E57252"/>
+      <stop offset="46%" stop-color="#DE3B20"/>
+      <stop offset="99%" stop-color="#A60003"/>
+    </linearGradient>
+    <linearGradient id="e" x1="46.17%" y1="16.35%" x2="49.93%" y2="83.05%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="23%" stop-color="#E4714E"/>
+      <stop offset="56%" stop-color="#BE1A0D"/>
+      <stop offset="99%" stop-color="#A80D00"/>
+    </linearGradient>
+    <linearGradient id="f" x1="36.97%" y1="15.59%" x2="49.53%" y2="92.48%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="18%" stop-color="#E46342"/>
+      <stop offset="40%" stop-color="#C82410"/>
+      <stop offset="99%" stop-color="#A80D00"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#a)" d="M153 130.8l-113 67L176.5 189l14.2-142.2-37.7 84z"/>
+  <path fill="url(#b)" d="M175.6 187.9l-17.2-86.6-34.3 45.3 51.5 41.3z"/>
+  <path fill="url(#c)" d="M175.9 187.9L95.4 180 41.4 199l134.5-11.1z"/>
+  <path fill="url(#d)" d="M41.5 199l23-75.5-46.4 10.8L41.5 199z"/>
+  <path fill="url(#e)" d="M140.1 145.9l-18.8-83L59 113.7l81.1 32.2z"/>
+  <path fill="url(#f)" d="M193.8 64.5l-56.8-47.5L120 107.8l73.8-43.3z"/>
+  <path fill="#9E1209" d="M166.9.8L118.7 17.4l18.2 46.7L166.9.8z"/>
+  <path fill="#9E1209" d="M0 158l18.2-25.8L4 95.4 0 158z"/>
+  <path fill="#FFF" d="M2 100.2l14.8 32.6 50-11.2 57.1-53 20.2-51L118.8 0 53.8 20.3 2 100.2z"/>
+  <path fill="#9E1209" d="M42.3 42.1c29.5-29.2 67.5-46.5 82-31.8 14.6 14.7-.9 50.5-30.4 79.7s-67 47.4-81.6 32.7c-14.6-14.7.5-51.4 30-80.6z"/>
+</svg>
