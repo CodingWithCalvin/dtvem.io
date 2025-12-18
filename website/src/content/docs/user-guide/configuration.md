@@ -270,4 +270,4 @@ Add `%USERPROFILE%\.dtvem\shims` to your system PATH via System Properties → E
 ## Next Steps
 
 - [Migration](/docs/user-guide/migration) — Migrate from other version managers
-- [Supported Runtimes](/docs/user-guide/runtimes) — Details on Python, Node.js, and Ruby
+- [Supported Runtimes](/docs/user-guide/runtimes/overview) — Details on Python, Node.js, and Ruby

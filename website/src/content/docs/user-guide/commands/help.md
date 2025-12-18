@@ -89,5 +89,5 @@ Examples:
 
 ## See Also
 
-- [Commands Reference](/docs/user-guide/commands) — Full command documentation
+- [Commands Reference](/docs/user-guide/commands/overview) — Full command documentation
 - [version](/docs/user-guide/commands/version) — Show dtvem version

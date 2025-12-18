@@ -306,5 +306,5 @@ export PATH="$HOME/.dtvem/shims:$PATH"
 
 ## Next Steps
 
-- [Commands Reference](/docs/user-guide/commands) — Full command documentation
+- [Commands Reference](/docs/user-guide/commands/overview) — Full command documentation
 - [Configuration](/docs/user-guide/configuration) — Configure dtvem for your workflow

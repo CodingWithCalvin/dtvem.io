@@ -143,6 +143,6 @@ myproject/
 
 ## Next Steps
 
-- [Commands Reference](/docs/user-guide/commands) — Full documentation of all commands
+- [Commands Reference](/docs/user-guide/commands/overview) — Full documentation of all commands
 - [Configuration](/docs/user-guide/configuration) — Environment variables and config files
-- [Supported Runtimes](/docs/user-guide/runtimes) — Details on Python, Node.js, and Ruby support
+- [Supported Runtimes](/docs/user-guide/runtimes/overview) — Details on Python, Node.js, and Ruby support
