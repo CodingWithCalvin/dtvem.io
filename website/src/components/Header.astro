@@ -9,11 +9,12 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/features', label: 'Features' },
   { href: '/compare', label: 'Compare' },
-  { href: '/docs', label: 'Docs' },
+  { href: '/docs/user-guide/getting-started', label: 'Documentation' },
 ];
 
 function isActive(href: string): boolean {
   if (href === '/') return currentPath === '/';
+  if (href.startsWith('/docs/')) return currentPath.startsWith('/docs/');
   return currentPath.startsWith(href);
 }
 ---
