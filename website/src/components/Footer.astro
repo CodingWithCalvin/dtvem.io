@@ -3,7 +3,7 @@ const currentYear = new Date().getFullYear();
 const currentPath = Astro.url.pathname;
 
 // Calculate GitHub edit URL based on current path
-const githubRepo = 'https://github.com/dtvem/dtvem.io';
+const githubRepo = 'https://github.com/CodingWithCalvin/dtvem.io';
 let editUrl = '';
 
 if (currentPath === '/' || currentPath === '') {
@@ -30,11 +30,11 @@ const footerLinks = {
     { href: '/docs/user-guide/migration', label: 'Migration Guide' },
   ],
   community: [
-    { href: 'https://github.com/dtvem/dtvem/discussions', label: 'Discussions' },
-    { href: 'https://github.com/dtvem/dtvem/issues', label: 'Issues' },
+    { href: 'https://github.com/CodingWithCalvin/dtvem.cli/discussions', label: 'Discussions' },
+    { href: 'https://github.com/CodingWithCalvin/dtvem.cli/issues', label: 'Issues' },
   ],
   social: [
-    { href: 'https://github.com/dtvem/dtvem', label: 'GitHub', icon: 'github' },
+    { href: 'https://github.com/CodingWithCalvin/dtvem.cli', label: 'GitHub', icon: 'github' },
     { href: 'https://twitter.com/dtvemio', label: 'Twitter', icon: 'twitter' },
     { href: 'https://bsky.app/profile/dtvem.io', label: 'Bluesky', icon: 'bluesky' },
   ],

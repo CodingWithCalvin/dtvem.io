@@ -1,6 +1,6 @@
 # dtvem.io
 
-The website for [dtvem](https://github.com/dtvem/dtvem), a cross-platform runtime version manager.
+The website for [dtvem](https://github.com/CodingWithCalvin/dtvem.cli), a cross-platform runtime version manager.
 
 ## Tech Stack
 
