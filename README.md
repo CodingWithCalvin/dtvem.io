@@ -1,5 +1,8 @@
 # dtvem.io
 
+[![Build](https://img.shields.io/github/actions/workflow/status/CodingWithCalvin/dtvem.io/build.yml?style=for-the-badge)](https://github.com/CodingWithCalvin/dtvem.io/actions)
+[![License](https://img.shields.io/github/license/CodingWithCalvin/dtvem.io?style=for-the-badge)](LICENSE)
+
 The website for [dtvem](https://github.com/CodingWithCalvin/dtvem.cli), a cross-platform runtime version manager.
 
 ## Tech Stack
