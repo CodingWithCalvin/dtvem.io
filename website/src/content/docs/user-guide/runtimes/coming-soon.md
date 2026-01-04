@@ -74,7 +74,7 @@ These runtimes are planned for future dtvem releases.
 
 ## Request a Runtime
 
-Want support for a runtime not listed here? [Open an issue](https://github.com/dtvem/dtvem/issues) on GitHub to request it.
+Want support for a runtime not listed here? [Open an issue](https://github.com/CodingWithCalvin/dtvem.cli/issues) on GitHub to request it.
 
 <hr class="my-8 border-primary-400" />
 

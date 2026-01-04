@@ -37,7 +37,7 @@ Compare your version with the latest release:
 > dtvem version
 dtvem 1.0.0
 
-# Check latest at https://github.com/dtvem/dtvem/releases
+# Check latest at https://github.com/CodingWithCalvin/dtvem.cli/releases
 ```
 
 ### Bug Reports

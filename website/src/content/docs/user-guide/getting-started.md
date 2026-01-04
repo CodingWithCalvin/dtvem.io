@@ -51,7 +51,7 @@ curl -fsSL dtvem.io/install.sh | bash
 
 ## Manual Installation
 
-1. Download the latest release from [GitHub Releases](https://github.com/dtvem/dtvem/releases)
+1. Download the latest release from [GitHub Releases](https://github.com/CodingWithCalvin/dtvem.cli/releases)
 2. Extract the archive (contains `dtvem` and `dtvem-shim`)
 3. Move both binaries to a directory in your PATH (e.g., `/usr/local/bin`)
 4. Run `dtvem init` to configure your shell, then restart your terminal
