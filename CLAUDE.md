@@ -100,5 +100,14 @@ website/
 GitHub Actions workflows in `.github/workflows/`:
 
 - **build.yml** - Build validation on push/PR
+- **deploy.yml** - Deploy to Cloudflare Pages on push to main
 - **commit-lint.yml** - Validate PR titles follow conventional commits
 - **contributors.yml** - Auto-update contributors in README
+
+## Deployment
+
+The site is deployed to Cloudflare Pages using Wrangler.
+
+- **Configuration:** `website/wrangler.toml`
+- **Deploy trigger:** Push to main (changes to `website/**`)
+- **Required secret:** `CLOUDFLARE_API_TOKEN`
