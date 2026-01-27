@@ -15,18 +15,22 @@ Initialize dtvem on your system.
 ```bash
 > dtvem init
 > dtvem init --yes
+> dtvem init --user
 ```
 
 ## Flags
 
 | Flag | Description |
 |------|-------------|
+| `--user` | Use User PATH instead of System PATH (Windows: no admin required) |
 | `--yes, -y` | Skip confirmation prompts |
 
 ## Behavior
 
 1. Creates the dtvem directory structure
 2. Configures PATH to include `~/.dtvem/shims`
+   - **Standard:** Adds to System PATH (requires admin on Windows)
+   - **User (`--user`):** Adds to User PATH (no admin required)
 3. Updates shell configuration files as needed
 
 ## Directory Structure Created
@@ -53,7 +57,7 @@ Initialize dtvem on your system.
 ## Examples
 
 ```bash
-# Interactive initialization
+# Interactive initialization (standard)
 > dtvem init
 Creating dtvem directory structure...
 Add ~/.dtvem/shims to PATH? [Y/n] y
@@ -67,6 +71,9 @@ Restart your terminal, then run:
 
 # Non-interactive initialization
 > dtvem init --yes
+
+# User installation (no admin required on Windows)
+> dtvem init --user
 ```
 
 ## Post-Init Steps
@@ -76,6 +83,20 @@ After running `dtvem init`:
 1. **Restart your terminal** — Required for PATH changes
 2. **Install a runtime** — `dtvem install python 3.12.0`
 3. **Set global version** — `dtvem global python 3.12.0`
+
+## Switching Install Types
+
+You can switch between standard and user installation by running `dtvem init` again:
+
+```powershell
+# Switch to user install
+> dtvem init --user
+
+# Switch back to system install (requires admin)
+> dtvem init
+```
+
+When switching, dtvem will warn about cleaning up the old PATH entry.
 
 <hr class="my-8 border-primary-400" />
 

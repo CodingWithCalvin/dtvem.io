@@ -11,15 +11,33 @@ Get dtvem installed and managing your runtimes in just a few minutes.
 
 ## Installation (Preferred)
 
-**Windows (PowerShell):**
+### Standard Installation
+
+**Windows (PowerShell as Administrator):**
 ```powershell
 irm dtvem.io/install.ps1 | iex
 ```
+Requires administrator privileges. Adds dtvem to System PATH for all users.
 
 **macOS / Linux:**
 ```bash
 curl -fsSL dtvem.io/install.sh | bash
 ```
+
+### User Installation (No Admin Required)
+
+**Windows (PowerShell):**
+```powershell
+iex "& { $(irm dtvem.io/install.ps1) } -UserInstall"
+```
+Does not require administrator privileges. Adds dtvem to User PATH.
+
+**macOS / Linux:**
+```bash
+curl -fsSL dtvem.io/install.sh | bash -s -- --user-install
+```
+
+> **Note:** On Windows, System PATH is evaluated before User PATH. If you have system-installed runtimes (Node.js, Python, Ruby), they will take priority over dtvem-managed versions with user installation.
 
 ### Default Locations
 
