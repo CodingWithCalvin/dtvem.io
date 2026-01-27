@@ -47,7 +47,7 @@ curl -fsSL dtvem.io/install.sh | bash -s -- --user-install
 | macOS | `~/.dtvem` | `~/.dtvem/shims` |
 | Linux | `~/.local/share/dtvem` | `~/.local/share/dtvem/shims` |
 
-On Linux, dtvem follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/). If `$XDG_DATA_HOME` is set, dtvem uses `$XDG_DATA_HOME/dtvem` instead.
+On all platforms, dtvem supports the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/). If `$XDG_DATA_HOME` is set, dtvem uses `$XDG_DATA_HOME/dtvem` instead.
 
 ## Custom Installation
 

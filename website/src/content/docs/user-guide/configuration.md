@@ -28,14 +28,23 @@ $env:DTVEM_ROOT = "C:\custom\path\dtvem"
 - macOS: `~/.dtvem`
 - Windows: `%USERPROFILE%\.dtvem`
 
-### XDG_DATA_HOME (Linux only)
+### XDG_DATA_HOME
 
-On Linux, dtvem follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). If `XDG_DATA_HOME` is set, dtvem uses `$XDG_DATA_HOME/dtvem`.
+dtvem supports the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) on all platforms. When `XDG_DATA_HOME` is set, dtvem uses `$XDG_DATA_HOME/dtvem` as its root directory.
 
 ```bash
-export XDG_DATA_HOME=~/.local/share  # Default
+# Linux/macOS
+export XDG_DATA_HOME=~/.local/share
 # dtvem will use ~/.local/share/dtvem
 ```
+
+```powershell
+# Windows (PowerShell)
+$env:XDG_DATA_HOME = "$env:USERPROFILE\.local\share"
+# dtvem will use %USERPROFILE%\.local\share\dtvem
+```
+
+When `XDG_DATA_HOME` is not set, dtvem uses the default locations shown above.
 
 **Note:** `DTVEM_ROOT` takes priority over `XDG_DATA_HOME`.
 
