@@ -1,6 +1,8 @@
 const REDIRECTS: Record<string, string> = {
   '/install.ps1': 'https://github.com/CodingWithCalvin/dtvem.cli/releases/latest/download/install.ps1',
   '/install.sh': 'https://github.com/CodingWithCalvin/dtvem.cli/releases/latest/download/install.sh',
+  '/uninstall.ps1': 'https://github.com/CodingWithCalvin/dtvem.cli/releases/latest/download/uninstall.ps1',
+  '/uninstall.sh': 'https://github.com/CodingWithCalvin/dtvem.cli/releases/latest/download/uninstall.sh',
 };
 
 export default {
