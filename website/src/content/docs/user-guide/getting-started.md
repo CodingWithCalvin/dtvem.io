@@ -76,6 +76,40 @@ curl -fsSL dtvem.io/install.sh | bash
 
 Alternatively, you can place the binaries in any directory and manually add it to the **beginning** of your system PATH before running `dtvem init`.
 
+## Uninstalling
+
+**Windows (PowerShell):**
+```powershell
+irm dtvem.io/uninstall.ps1 | iex
+```
+
+**macOS / Linux:**
+```bash
+curl -fsSL dtvem.io/uninstall.sh | bash
+```
+
+The uninstaller lists everything it will remove and asks before removing anything. To skip the prompt:
+
+**Windows (PowerShell):**
+```powershell
+iex "& { $(irm dtvem.io/uninstall.ps1) } -Yes"
+```
+
+**macOS / Linux:**
+```bash
+curl -fsSL dtvem.io/uninstall.sh | bash -s -- --yes
+```
+
+### What Gets Removed
+
+- **The dtvem directory** — the dtvem binaries, shims, config, and every runtime version installed with dtvem, along with their global packages. This covers the default location, `$XDG_DATA_HOME/dtvem`, and a custom `DTVEM_ROOT`.
+- **PATH changes** made by the installer and `dtvem init`:
+  - **macOS / Linux:** the blocks marked `# Added by dtvem` in your shell config files
+  - **Windows:** the dtvem entries in the User and System PATH. Windows asks for administrator rights (UAC) when the System PATH needs editing.
+- **Ruby leftovers (Windows only)** — older dtvem versions installed Ruby with RubyInstaller, which registered Programs and Features entries, Start menu folders, and `.rb`/`.rbw` file associations. These are removed too.
+
+> **Note:** Version files in your projects (`.dtvem/runtimes.json`, `.tool-versions`, `.nvmrc`, `.python-version`, `.ruby-version`) are left alone.
+
 <hr class="my-8 border-primary-400" />
 
 ## Verify Installation
